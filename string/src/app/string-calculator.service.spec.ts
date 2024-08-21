@@ -28,6 +28,10 @@ describe('StringCalculatorService', () => {
   it('should return the sum of numbers separated by commas and new lines', () => {
     expect(service.add("1\n2,3")).toEqual(6);
   });
+  it('should return the sum of numbers with a custom delimiter', () => {
+    expect(service.add("//;\n1;2")).toEqual(3);
+  });
+  
   
   
   

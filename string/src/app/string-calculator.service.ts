@@ -10,8 +10,18 @@ export class StringCalculatorService {
     if (numbers === "") {
       return 0;
     }
-    const formattedNumbers = numbers.replace(/\n/g, ",");
-    const numArray = formattedNumbers.split(",");
+  
+    let delimiter = ",";
+    let numberString = numbers;
+  
+    if (numbers.startsWith("//")) {
+      const delimiterEndIndex = numbers.indexOf("\n");
+      delimiter = numbers.substring(2, delimiterEndIndex);
+      numberString = numbers.substring(delimiterEndIndex + 1);
+    }
+  
+    const formattedNumbers = numberString.replace(/\n/g, delimiter);
+    const numArray = formattedNumbers.split(delimiter);
     return numArray.reduce((sum, num) => sum + parseInt(num, 10), 0);
   }
   
