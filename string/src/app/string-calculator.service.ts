@@ -10,7 +10,8 @@ export class StringCalculatorService {
     if (numbers === "") {
       return 0;
     }
-    return parseInt(numbers, 10); 
+    const numArray = numbers.split(",");
+    return numArray.reduce((sum, num) => sum + parseInt(num, 10), 0);
   }
   
 }
