@@ -21,9 +21,17 @@ export class StringCalculatorService {
     }
   
     const formattedNumbers = numberString.replace(/\n/g, delimiter);
-    const numArray = formattedNumbers.split(delimiter);
-    return numArray.reduce((sum, num) => sum + parseInt(num, 10), 0);
+    const numArray = formattedNumbers.split(delimiter).map(num => parseInt(num, 10));
+  
+    // Check for negative numbers
+    const negativeNumbers = numArray.filter(num => num < 0);
+    if (negativeNumbers.length > 0) {
+      throw new Error(`negative numbers not allowed: ${negativeNumbers.join(",")}`);
+    }
+  
+    return numArray.reduce((sum, num) => sum + num, 0);
   }
+  
   
   
 }

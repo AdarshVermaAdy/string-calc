@@ -31,6 +31,13 @@ describe('StringCalculatorService', () => {
   it('should return the sum of numbers with a custom delimiter', () => {
     expect(service.add("//;\n1;2")).toEqual(3);
   });
+  it('should throw an exception for negative numbers', () => {
+    expect(() => service.add("1,-2,3")).toThrowError("negative numbers not allowed: -2");
+  });
+  
+  it('should throw an exception listing all negative numbers', () => {
+    expect(() => service.add("1,-2,-3,4")).toThrowError("negative numbers not allowed: -2,-3");
+  });
   
   
   
