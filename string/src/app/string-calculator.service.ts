@@ -10,8 +10,10 @@ export class StringCalculatorService {
     if (numbers === "") {
       return 0;
     }
-    const numArray = numbers.split(",");
+    const formattedNumbers = numbers.replace(/\n/g, ",");
+    const numArray = formattedNumbers.split(",");
     return numArray.reduce((sum, num) => sum + parseInt(num, 10), 0);
   }
+  
   
 }
